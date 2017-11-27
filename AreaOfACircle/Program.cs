@@ -55,34 +55,9 @@ namespace AreaOfACircle
             // thing as Double.TryParse(string s, out double result), but you can step through my
             // TryParse(string s, out double result) to see how the  Double.TryParse(string s, out double result)
             // might work and how it returns information.
-            do
-            {
-
-                // If it is the first time through the loop
-                if (firstTime == true)
-                {
-                    // Display the following message to the user
-                    Console.Write("Please enter a the radius of the circle: ");
-                }
-                else
-                {
-                    // Display the error message to the user
-                    Console.Write("\nError!!!\n\tThe radius needs o be a positive number ");
-                }
-
-                // check to see if the user input is a double and
-                // assign the value that the TryParse function returns
-                // to the isDouble variable
-                isDouble = Double.TryParse(Console.ReadLine(), out radius);
-
-
-            } while (!(isDouble)        // if the isDouble is false
-                        || radius < 0   // OR if the radius is less than 0 the loop will continue
-                    );
-
-            //// Alternate TryParse Start
             //do
             //{
+
             //    // If it is the first time through the loop
             //    if (firstTime == true)
             //    {
@@ -98,12 +73,39 @@ namespace AreaOfACircle
             //    // check to see if the user input is a double and
             //    // assign the value that the TryParse function returns
             //    // to the isDouble variable
-            //    isDouble = TryParse(Console.ReadLine(), out radius);  // Uses the custom TryParse
+            //    isDouble = Double.TryParse(Console.ReadLine(), out radius);
+
 
             //} while (!(isDouble)        // if the isDouble is false
             //            || radius < 0   // OR if the radius is less than 0 the loop will continue
             //        );
-            //// Alternate TryParse End
+
+            // Alternate TryParse Start
+            do
+            {
+                // If it is the first time through the loop
+                if (firstTime == true)
+                {
+                    // Display the following message to the user
+                    Console.Write("Please enter a the radius of the circle: ");
+                }
+                else
+                {
+                    // Display the error message to the user
+                    Console.Write("\nError!!!\n\tThe radius needs o be a positive number ");
+                }
+
+                // check to see if the user input is a double and
+                // assign the value that the TryParse function returns
+                // to the isDouble variable
+                isDouble = TryParse(Console.ReadLine(), out radius);  // Uses the custom TryParse
+
+                firstTime = false;
+
+            } while (!(isDouble)        // if the isDouble is false
+                        || radius < 0   // OR if the radius is less than 0 the loop will continue
+                    );
+            // Alternate TryParse End
 
             // Processing
 
@@ -142,7 +144,7 @@ namespace AreaOfACircle
             // Declarations
 
             // Variables
-            bool returnValue; // will be set to true or false depending on if the s (string) variable could be converted to a double
+            bool returnValue = false; // will be set to true or false depending on if the s (string) variable could be converted to a double
 
             // "try/catch" statements are similar to an "if" statement 
             // try everything in the try block ( start { One and end } Two  ) and if something does not work between the { One and } Two,
@@ -159,7 +161,7 @@ namespace AreaOfACircle
                 returnValue = true;
 
             } // Two
-            catch //(Exception ex)
+            catch (Exception ex)
             { // Three
 
                 // if it did not convert because the string did not represent a number
